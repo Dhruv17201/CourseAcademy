@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -49,6 +50,16 @@ class LoginPage : AppCompatActivity() {
                                 var movetomainpage:Intent= Intent(applicationContext,MainPage::class.java)
                                     startActivity(movetomainpage)
                             }
+                            else{
+                                Toast.makeText(applicationContext, "Password Is Wrong Please Check It Again", Toast.LENGTH_SHORT).show()
+                                pass.requestFocus()
+                                pass.setText("")
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(applicationContext, "Please Check Your Email ID An Try Again !! ", Toast.LENGTH_SHORT).show()
+                            email.requestFocus()
                         }
                     }
 
