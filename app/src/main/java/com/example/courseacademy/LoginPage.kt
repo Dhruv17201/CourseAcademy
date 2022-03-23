@@ -58,7 +58,7 @@ class LoginPage : AppCompatActivity() {
                         }
                         else
                         {
-                            Toast.makeText(applicationContext, "Please Check Your Email ID An Try Again !! ", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(applicationContext, "Please Check Your Email ID And Try Again !! ", Toast.LENGTH_SHORT).show()
                             email.requestFocus()
                         }
                     }
