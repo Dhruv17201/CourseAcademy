@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginPage"
+    android:orientation="vertical"
+    android:background="@drawable/backgroung2"
+    >
+
+    <TextView
+        android:id="@+id/loginlogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/loginsignuplogo"
+        android:fontFamily="@font/aclonica"
+        android:paddingLeft="30dp"
+        android:paddingTop="10dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="10dp"
+        android:text="LogIn"
+        android:textColor="@color/black"
+        android:textSize="40sp" />
+
+
+
+    <EditText
+        android:id="@+id/Emailid"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text=""
+        android:hint="Enter Email ID Here"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:background="@drawable/textbox_borders"
+        android:paddingLeft="20dp"
+        android:layout_marginBottom="30dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:layout_gravity="center"
+        android:textSize="25sp"
+        android:hint="Enter Password Here"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:background="@drawable/textbox_borders"
+        android:paddingLeft="20dp"
+        android:layout_marginBottom="50dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+
+    <Button
+        android:id="@+id/loginbtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:layout_gravity="center"
+        android:textSize="30sp"
+        android:background="@drawable/buttonlayout"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        />
+
+    <TextView
+        android:id="@+id/signuptext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Don't Have Account ??"
+        android:textSize="25sp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+
+        />
+    <Button
+        android:id="@+id/signupredirect"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:text="signup"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:background="@drawable/loginsignuplogo"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
+
+
+</LinearLayout>
