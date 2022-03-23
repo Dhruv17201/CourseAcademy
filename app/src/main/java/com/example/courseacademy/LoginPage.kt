@@ -41,11 +41,15 @@ class LoginPage : AppCompatActivity() {
                 var getpass=pass.text.toString()
                 reference.child("UserDetails").addListenerForSingleValueEvent(object :ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        reference.child("UserDetails").child(getemail)
-                        /*if()
+                        if(snapshot.hasChild(getemail))
                         {
-
-                        }*/
+                            var storepass=snapshot.child(getemail).child("Password").getValue()
+                            if(storepass == getpass)
+                            {
+                                var movetomainpage:Intent= Intent(applicationContext,MainPage::class.java)
+                                    startActivity(movetomainpage)
+                            }
+                        }
                     }
 
                     override fun onCancelled(error: DatabaseError) {
