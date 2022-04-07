@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".LoginPage"
     android:orientation="vertical"
-    android:background="@drawable/backgroung2"
+    android:background="@color/black"
     >
 
     <TextView
@@ -23,28 +23,29 @@
         android:paddingRight="30dp"
         android:paddingBottom="10dp"
         android:text="LogIn"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="40sp" />
 
 
 
     <EditText
-        android:id="@+id/Emailid"
+        android:id="@+id/username"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
-        android:hint="Enter Email ID Here"
+        android:hint="Enter UserName"
         android:layout_gravity="center"
         android:textSize="25sp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:background="@drawable/textbox_borders"
         android:paddingLeft="20dp"
         android:layout_marginBottom="30dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:maxLength="10"
         />
     <EditText
         android:id="@+id/password"
@@ -54,9 +55,9 @@
         android:inputType="textPassword"
         android:layout_gravity="center"
         android:textSize="25sp"
-        android:hint="Enter Password Here"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
+        android:hint="Enter Password "
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
         android:background="@drawable/textbox_borders"
         android:paddingLeft="20dp"
         android:layout_marginBottom="50dp"
@@ -74,6 +75,9 @@
         android:background="@drawable/buttonlayout"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+        android:fontFamily="@font/aclonica"
         />
 
     <TextView
@@ -84,9 +88,10 @@
         android:textSize="25sp"
         android:layout_marginTop="30dp"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
 
         />
+
     <Button
         android:id="@+id/signupredirect"
         android:layout_width="130dp"
@@ -99,6 +104,7 @@
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
+        android:fontFamily="@font/aclonica"
         />
 
 

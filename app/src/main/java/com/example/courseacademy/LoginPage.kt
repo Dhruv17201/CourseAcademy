@@ -11,6 +11,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.getValue
 
 class LoginPage : AppCompatActivity() {
     val database = FirebaseDatabase.getInstance()
@@ -20,46 +21,48 @@ class LoginPage : AppCompatActivity() {
         setContentView(R.layout.activity_login_page)
         var signup:Button=findViewById(R.id.signupredirect)
         var btnlogin:Button=findViewById(R.id.loginbtn)
-        var email:EditText=findViewById(R.id.Emailid)
+        var uname:EditText=findViewById(R.id.username)
         var pass:EditText=findViewById(R.id.password)
         signup.setOnClickListener {
-            var Signup:Intent= Intent(applicationContext,RegisterPage::class.java)
+            var Signup = Intent(applicationContext,RegisterPage::class.java)
             startActivity(Signup)
+            finish()
         }
         btnlogin.setOnClickListener {
-            if(TextUtils.isEmpty(email.text.toString()))
+            if(TextUtils.isEmpty(uname.text.toString()))
             {
-                email.setError("Please Fill Out UserName")
-                email.requestFocus()
+                uname.error = "Please Fill Out User Name"
+                uname.requestFocus()
             }
             else if(TextUtils.isEmpty(pass.text.toString()))
             {
-                pass.setError("Please Fill Out UserName")
+                pass.error = "Please Fill Out Password"
                 pass.requestFocus()
             }
             else{
-                var getemail=email.text.toString()
+                var getuname=uname.text.toString()
                 var getpass=pass.text.toString()
                 reference.child("UserDetails").addListenerForSingleValueEvent(object :ValueEventListener{
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        if(snapshot.hasChild(getemail))
+                        if(snapshot.hasChild(getuname))
                         {
-                            var storepass=snapshot.child(getemail).child("Password").getValue()
+                            var storepass=snapshot.child(getuname).child("Password").getValue()
                             if(storepass == getpass)
                             {
-                                var movetomainpage:Intent= Intent(applicationContext,MainPage::class.java)
-                                    startActivity(movetomainpage)
+                                //Toast.makeText(applicationContext, "$storepass", Toast.LENGTH_SHORT).show()
+                             var movetologin:Intent = Intent(applicationContext,MainPage::class.java)
+                                startActivity(movetologin)
                             }
                             else{
                                 Toast.makeText(applicationContext, "Password Is Wrong Please Check It Again", Toast.LENGTH_SHORT).show()
-                                pass.requestFocus()
+                                  pass.requestFocus()
                                 pass.setText("")
                             }
                         }
                         else
                         {
-                            Toast.makeText(applicationContext, "Please Check Your Email ID And Try Again !! ", Toast.LENGTH_SHORT).show()
-                            email.requestFocus()
+                            Toast.makeText(applicationContext, "Please Check Your UserName And Try Again !! ", Toast.LENGTH_SHORT).show()
+                            uname.requestFocus()
                         }
                     }
 

@@ -1,11 +1,13 @@
 package com.example.courseacademy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -15,13 +17,14 @@ class RegisterPage : AppCompatActivity() {
 
     val database = FirebaseDatabase.getInstance()
     val reference = database.getReferenceFromUrl("https://courseacademy-6e3fb-default-rtdb.firebaseio.com/")
+    var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register_page)
         var name:EditText=findViewById(R.id.name)
-        var uname:EditText=findViewById(R.id.username)
-        var email:EditText=findViewById(R.id.emailid)
+        var username:EditText=findViewById(R.id.uname)
+        var phone:EditText=findViewById(R.id.phonenum)
         var pass:EditText=findViewById(R.id.password)
         var cpass:EditText=findViewById(R.id.confirmpassword)
         var signupbtn:Button=findViewById(R.id.signupbtn)
@@ -32,15 +35,15 @@ class RegisterPage : AppCompatActivity() {
                 name.requestFocus()
                 name.setError("Please Enter Name")
             }
-            else if(TextUtils.isEmpty(uname.text.toString()))
+            else if(TextUtils.isEmpty(username.text.toString()))
             {
-                uname.requestFocus()
-                uname.setError("Please Enter UserName")
+                username.requestFocus()
+                username.setError("Please Enter Username")
             }
-            else if(TextUtils.isEmpty(email.text.toString()))
+            else if(TextUtils.isEmpty(phone.text.toString()))
             {
-                email.requestFocus()
-                email.setError("Please Enter EmailID")
+                phone.requestFocus()
+                phone.setError("Please Enter Phone Number")
             }
             else if(TextUtils.isEmpty(pass.text.toString()))
             {
@@ -64,38 +67,55 @@ class RegisterPage : AppCompatActivity() {
                 }
                 else
                 {
-                    var emailid=email.text.toString()
-                    var Name=name.text.toString()
-                    var username=uname.text.toString()
-                    var password=pass.text.toString()
-                    reference.child("UserDetails").addListenerForSingleValueEvent(object :
-                        ValueEventListener {
+
+                    reference.child("UserDetails").addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            if(snapshot.hasChild(emailid))
+                            var Phone=phone.text.toString()
+                            var Name=name.text.toString()
+                            var password=pass.text.toString()
+                            var Uname= username.text.toString()
+                            if (!snapshot.hasChild(Phone))
                             {
-                                Toast.makeText(applicationContext, "Email Already Exist Try With New Email ID", Toast.LENGTH_SHORT).show()
-                            }
-                            else if (snapshot.hasChild(username)){
-                                Toast.makeText(applicationContext, "UserName Already Exist Try With New UserName", Toast.LENGTH_SHORT).show()
+                                if(!snapshot.hasChild(Uname)) {
+                                    reference.child("UserDetails").child(Uname).child("Name")
+                                        .setValue(Name)
+                                    reference.child("UserDetails").child(Uname).child("UserName")
+                                        .setValue(Uname)
+                                    reference.child("UserDetails").child(Uname).child("Password")
+                                        .setValue(password)
+                                    reference.child("UserDetails").child(Uname).child("Phone")
+                                        .setValue(Phone)
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Registered Successfully ",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    var movetologin: Intent =
+                                        Intent(applicationContext, LoginPage::class.java)
+                                    startActivity(movetologin)
+                                    finish()
+                                }
+                                else{
+                                    Toast.makeText(applicationContext, "USerName Already Exists", Toast.LENGTH_SHORT).show()
+                                }
                             }
                             else{
-                                reference.child("UserDetails").child(emailid).child("Name").setValue(Name)
-                                reference.child("UserDetails").child(emailid).child("Email ID").setValue(emailid)
-                                reference.child("UserDetails").child(emailid).child("Username").setValue(username)
-                                reference.child("UserDetails").child(emailid).child("Password").setValue(password)
-                                Toast.makeText(applicationContext, "Registered SuccessFully", Toast.LENGTH_LONG).show()
+                                Toast.makeText(applicationContext, "Phone Number Already Exists", Toast.LENGTH_SHORT).show()
                             }
                         }
 
                         override fun onCancelled(error: DatabaseError) {
                             TODO("Not yet implemented")
                         }
-
                     })
-
-
                 }
             }
+        }
+        var redirectlogin:Button=findViewById(R.id.redirectloginbtn)
+        redirectlogin.setOnClickListener {
+            var redirecttologin:Intent= Intent(applicationContext,LoginPage::class.java)
+            startActivity(redirecttologin)
+            finish()
         }
     }
 }
