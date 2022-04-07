@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.MyCourseFragment"
+    android:background="@drawable/backgroundformainpage">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        >
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="MyCourses"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            android:fontFamily="@font/almendra"
+            />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/title"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/architects_daughter"
+            android:padding="10dp"
+            android:text="Hey Hurry Up U Have Pending Courses To Complete My friend"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mycourserecyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="486dp"
+            android:layout_below="@+id/text"
+            android:layout_marginTop="52dp" />
+
+
+    </RelativeLayout>
+</FrameLayout>
